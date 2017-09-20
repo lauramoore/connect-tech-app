@@ -4,16 +4,22 @@
       "intent": "AMAZON.ResumeIntent"
     },
     {
-      "intent": "getRonSwansonQuote"
-    },
-    {
+      "intent": "readyPlayer",
       "slots": [
         {
           "name": "NAME",
           "type": "NAME"
         }
       ],
-      "intent": "audioPlayer"
+    },
+    {
+      "intent": "rollDice",
+      "slots": [
+        {
+          "name": "DICE",
+          "type": "NAME"
+        }
+      ]
     },
     {
       "intent": "AMAZON.PauseIntent"

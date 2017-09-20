@@ -1,9 +1,9 @@
 {
-  "name": "connect-tech",
+  "name": "virtual-gamer",
   "version": "1.0.0",
-  "description": "ConnectTech App",
+  "description": "Let Alexa Fill in for missing players",
   "main": "index.js",
-  "author": "Britney Dossett britney.dosset@turner.com",
+  "author": "Laura Moore laura.moore@rightbox.com",
   "license": "ISC",
   "alexa": {
     "applicationId":""

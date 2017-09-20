@@ -1,7 +1,6 @@
 'use strict';
 const makeCard = require('./lib/makeCard.js'),
-    ronSwansonApi = require('./lib/ronSwansonApi.js'),
-    audiofiles = require('./lib/audiofile.js'),
+    playerApi = require('./lib/playerApi.js'),
     _ = require('lodash');
 
 /**
@@ -9,10 +8,9 @@ const makeCard = require('./lib/makeCard.js'),
 **/
 
 
-let connectTech = function (app) {
+let virtualGamerApp = function (app) {
     app.makeCard = makeCard;
-    app.ronSwansonApi = ronSwansonApi;
-    app.audiofiles = audiofiles;
+    app.players = playerApi;
     app._ = _;
 
     /**
@@ -26,30 +24,26 @@ let connectTech = function (app) {
     /**
      *  Custom Intents:
      *      launch
-     *      getRonSwansonQuote
-     *      audioPlayer
+     *      readyPlayer
      **/
      app.launch(function (request, response) {
-         response.say('Hello Connect Tech! You can hear a Ron Swanson Quote, or play the talking heads. What would like to hear?');
+         response.say('Hello Virtual Gamer! Who am I filling in for today?');
          response.shouldEndSession(false, 'What did you say?').send();
      });
 
-     app.intent('getRonSwansonQuote', (request, response) => {
-       return app.ronSwansonApi.getQuote().then( (quote) => {
-             let finalQuote = quote;
-             app.makeCard(finalQuote, response, 'ron');
-             return response.say(`Ron Swanson Says: ${finalQuote}.
-                                 Would you like to hear another quote?`)
-                                 .shouldEndSession(false, 'Say that again?')
-                                 .send();
-         });
-     });
-
-     app.intent('audioPlayer', {
+/*
+     app.intent('readyPlayer', {
          slots: {NAME: 'NAME'}
      }, (request, response) => {
-
+       let player = {
+         name: request.slot('NAME');
+       }
+       app.makeCard(player.name, response, 'active');
+       return response.say(`${player.name}. is ready.`)
+                           .shouldEndSession(false, 'Who was that again?')
+                           .send();
      });
+     */
 
     /**
      *  Amazon built-in intents:
@@ -61,11 +55,11 @@ let connectTech = function (app) {
      *      AMAZON.HelpIntent
      **/
      app.intent('AMAZON.CancelIntent', (request, response) => {
-         return response.say('Goodbye JazzCon!')
+         return response.say('Great Game! See you next week.')
                              .shouldEndSession(true)
                              .send();
      });
 
 };
 
-module.exports = connectTech;
+module.exports = virtualGamerApp;
