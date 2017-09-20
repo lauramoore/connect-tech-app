@@ -31,19 +31,19 @@ let virtualGamerApp = function (app) {
          response.shouldEndSession(false, 'What did you say?').send();
      });
 
-/*
+
      app.intent('readyPlayer', {
          slots: {NAME: 'NAME'}
      }, (request, response) => {
        let player = {
-         name: request.slot('NAME');
+         name: request.slot('NAME')
        }
        app.makeCard(player.name, response, 'active');
        return response.say(`${player.name}. is ready.`)
                            .shouldEndSession(false, 'Who was that again?')
                            .send();
      });
-     */
+
 
     /**
      *  Amazon built-in intents:
